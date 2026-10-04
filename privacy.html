@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy Policy &ndash; Drive Curator</title><meta name="description" content="What Drive Curator collects, why, and who processes it."><link rel="stylesheet" href="style.css"></head><body>
+<header class="site"><a class="brand" href="index.html">Drive<span>Curator</span></a><a class="nav" href="support.html">Support</a><a class="nav" href="privacy.html">Privacy Policy</a></header>
+<main>
+
+<h1>Privacy Policy</h1>
+<p class="meta">Drive Curator (iOS app) &middot; Effective October 3, 2026</p>
+
+<p>Drive Curator turns your drive into a live podcast about the places you pass. This policy explains, in plain language, what the app does with your information. The short version: there is <b>no account</b>, we use your location only to find and tell you stories about nearby places, we <b>do not run ads</b>, we <b>do not sell</b> your data, and we do not track you across other companies' apps or websites.</p>
+
+<h2>1. What we collect and why</h2>
+
+<h3>Location</h3>
+<p>The app asks for permission to use your device's location. We use it to work out where you are so we can tell you stories about places nearby. If you allow "Always" location access, the app keeps working while your screen is locked or you are using another app during a drive; if you choose "While Using", it only works while the app is open. You can change this any time in iOS <i>Settings &rsaquo; Privacy &amp; Security &rsaquo; Location Services &rsaquo; Drive Curator</i>, and you can use the app without GPS by typing a city, state or ZIP code instead.</p>
+<p>When the app needs a new story, it sends your current GPS coordinates (or the place you typed) to our server (<code>/api/narrate</code>), together with your radius and interest choices, the date, and a short list of story subjects you have already heard (so you don't get repeats). Our server uses that to produce the story (see "Who processes your information" below). Stories are kept in a shared cache keyed by a coarse map area (roughly a 4&nbsp;km grid cell) so a story written for one area can be reused for other people in the same area; the cache stores the story text, not who requested it.</p>
+<p>The app also keeps a running total of miles and stories on your device ("Your road so far"). That total is stored only on your device.</p>
+
+<h3>Anonymous device ID and usage analytics</h3>
+<p>The first time you open the app it creates a random anonymous identifier (stored on your device as <code>dc_uid</code>). It is not your name, not your Apple ID, and not the advertising identifier. The app sends basic usage events to our server (<code>/api/track</code>) tagged with this random ID and a per-launch session ID. Events can include: the event type and time, whether you are on the free or Curator+ plan, the place name of a story, your approximate location (rounded to about 1&nbsp;km), the radius and interests you selected, the narrator voice chosen, and technical details about how a story was produced (for example which AI engine answered and how long the text was). We use this to understand what works, fix problems and control costs.</p>
+
+<h3>Ratings and reports</h3>
+<p>If you tap thumbs up, thumbs down or "Report" on a story, the app sends (<code>/api/rate</code>) that choice, the story's topic and area, the reason you picked, an optional note you type (up to 300 characters), and your anonymous device ID. Ratings help good stories surface and bad or inaccurate ones fade out. Please don't put personal information in report notes.</p>
+
+<h3>Email address (optional)</h3>
+<p>Providing an email address is optional. If you join a Curator+ waitlist or email sign-up form (offered in our web version), the email address you enter is sent to our server (<code>/api/waitlist</code>) and stored so we can contact you about Curator+ and the app. You can ask us to remove it at any time. If you email us for support, we receive your address and message and use them only to reply.</p>
+
+<h3>Audio</h3>
+<p>If you use a "studio" narrator voice (Rex, Ara or Eve), the text of the story is sent to our server (<code>/api/tts</code>), which sends it to a text-to-speech provider (xAI) to produce the audio. Audio files for a given story and voice may be cached so they can be reused. If you use a free "device voice", speech is generated on your phone by Apple's built-in speech engine and nothing is sent for that. Drive Curator does not record or listen to your microphone.</p>
+
+<h3>Purchases</h3>
+<p>Curator+ subscriptions are purchased through Apple's in-app purchase system. Apple processes your payment and we never see your card or Apple ID details. We use RevenueCat (a subscription management service) to verify your purchase and unlock Curator+. RevenueCat receives an anonymous app user ID, your purchase/subscription status and receipt information, and basic device and network information (such as your IP address) as needed to provide this service. See Apple's and RevenueCat's privacy policies for how they handle that data.</p>
+
+<h3>Maps and place lookup</h3>
+<p>When you open the Explore map, your device contacts third-party map services directly &mdash; OpenStreetMap (map tiles), Overpass/OpenStreetMap (nearby places) and Wikipedia (nearby articles). Those services receive the part of the map you are viewing and your device's IP address, as they would for any web request. The "Look it up" button opens a web search in your browser for the story's subject; it does not send your location.</p>
+
+<h3>Stored on your device</h3>
+<p>Your preferences (interests, radius, narrator voice, dark mode, spoken narration on/off), your miles/stories totals, the list of stories you've already heard, and your anonymous device ID are stored locally on your phone. Deleting the app removes them from your device.</p>
+
+<h2>2. Who processes your information</h2>
+<table>
+<tr><th>Provider</th><th>What for</th><th>What they receive</th></tr>
+<tr><td>Google (Gemini API)</td><td>Primary AI that writes story text, including web-grounded search for nearby real events ("The Pulse")</td><td>Your GPS coordinates or typed place, radius, interests, date, and a list of already-heard story subjects</td></tr>
+<tr><td>xAI (Grok API)</td><td>Backup AI for story text and place lookups; text-to-speech for studio narrator voices</td><td>The same story request as above if used as the backup; the story text to be voiced</td></tr>
+<tr><td>Apple</td><td>App distribution, in-app purchases, on-device speech</td><td>Payment and subscription details under Apple's own policy</td></tr>
+<tr><td>RevenueCat</td><td>Verifying subscriptions and unlocking Curator+</td><td>Anonymous user ID, purchase/receipt status, device and IP data</td></tr>
+<tr><td>Netlify</td><td>Hosts our server functions and website</td><td>Everything our server receives, plus standard server logs (such as IP address and request time)</td></tr>
+<tr><td>Upstash (Redis database)</td><td>Stores our analytics events, ratings, story and audio caches, and any waitlist emails</td><td>The anonymous analytics/rating data and cached content described above</td></tr>
+<tr><td>OpenStreetMap, Overpass, Wikipedia</td><td>Explore map and nearby places</td><td>The map area you view and your IP address (contacted directly by your device)</td></tr>
+</table>
+<p>These providers process data on our behalf or, in the case of Apple and map services, under their own policies. We do not control their practices beyond the services listed here, so please review their policies if you want details.</p>
+
+<h2>3. What we don't do</h2>
+<ul>
+<li>No advertising, and no advertising networks or ad SDKs in the app.</li>
+<li>We do not sell your personal information or share it for advertising.</li>
+<li>We do not use your data to track you across other companies' apps and websites, and we do not read the advertising identifier (IDFA).</li>
+<li>We do not require an account, name, phone number or contact list.</li>
+</ul>
+
+<h2>4. Retention</h2>
+<p>Data on your device stays there until you delete the app or clear its data. Analytics events, ratings and cached stories on our servers are kept for as long as they are useful for running and improving the app, and we delete them on request where we can identify them (see "Your choices"). Cached stories contain no information about who requested them.</p>
+
+<h2>5. Your choices and rights</h2>
+<ul>
+<li><b>Location:</b> turn it off or limit it to "While Using" in iOS Settings, or use the typed-place option.</li>
+<li><b>Email:</b> you never have to give us one. If you did, email us and we'll remove it.</li>
+<li><b>Access or deletion:</b> email <a href="mailto:hello@ghostorchestra.com">hello@ghostorchestra.com</a> to ask what we hold about you or to have it deleted. Because usage data is tied only to a random ID (which isn't shown in the app) and not to your name, we usually can't match it to you on our own. Deleting the app removes the ID from your phone, and a new ID is created if you reinstall. If you want server-side events deleted, tell us roughly when you used the app and we'll do what we reasonably can.</li>
+<li><b>Subscriptions:</b> manage or cancel in iOS <i>Settings &rsaquo; [your name] &rsaquo; Subscriptions</i>.</li>
+</ul>
+<p>Depending on where you live (for example California or the European Economic Area), you may have additional legal rights over your personal information, such as access, correction, deletion or objection. Use the contact address below and we will respond.</p>
+
+<h2>6. Children</h2>
+<p>Drive Curator is not directed to children under 13, and we do not knowingly collect personal information from children under 13. If you believe a child has given us personal information, contact us and we will delete it.</p>
+
+<h2>7. Security</h2>
+<p>Data is sent over encrypted (HTTPS) connections. No method of transmission or storage is perfectly secure, but we keep what we collect minimal.</p>
+
+<h2>8. Changes</h2>
+<p>If we change this policy we will update the effective date above. Material changes will be reflected in the app's listing or on this page.</p>
+
+<h2>9. Contact</h2>
+<p>Questions or requests about privacy: <a href="mailto:hello@ghostorchestra.com">hello@ghostorchestra.com</a>.</p>
+</main>
+<footer>&copy; 2026 Drive Curator &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="support.html">Support</a> &middot; <a href="mailto:hello@ghostorchestra.com">hello@ghostorchestra.com</a></footer>
+</body></html>
